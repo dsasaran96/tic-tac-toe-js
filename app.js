@@ -18,6 +18,7 @@ const restartBtn = document.getElementById('restartBtn');
 const playerBtn = document.getElementById('player');
 const aiBtn = document.getElementById('ai');
 let oTurn;
+let mode;
 
 function startGame() {
     oTurn = false;
@@ -28,25 +29,11 @@ function startGame() {
         cell.addEventListener('click', handleClick, { once: true })
     });
     setBoardHoverClass();
-    aiBtn.classList.remove('hide');
     winMsgElem.classList.remove('show');
-}
-
-function startGamePlayer() {
-    oTurn = false;
-    cellElements_div.forEach(cell => {
-        cell.classList.remove(X_CLASS);
-        cell.classList.remove(O_CLASS);
-        cell.removeEventListener('click', handleClick);
-        cell.addEventListener('click', handleClick, { once: true })
-    });
-    setBoardHoverClass();
-    winMsgElem.classList.remove('show');
-    aiBtn.classList.add('hide');
 }
 
 restartBtn.addEventListener('click', startGame);
-playerBtn.addEventListener('click', startGamePlayer);
+startGame();
 
 function handleClick(e) {
     const cell = e.target;
@@ -76,7 +63,7 @@ function endGame(draw) {
     if (draw) {
         winMsgText.innerText = 'Draw!';
     } else {
-        winMsgText.innerText = `${oTurn ? "O's" : "X's"} Wins!`;
+        winMsgText.innerText = `${oTurn ? "O's" : "X's"} win!`;
     }
     winMsgElem.classList.add('show');
 }
