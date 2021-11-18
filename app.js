@@ -15,6 +15,8 @@ const board = document.getElementById('board');
 const winMsgText = document.querySelector('[data-win-msg-text');
 const winMsgElem = document.getElementById('winMsg');
 const restartBtn = document.getElementById('restartBtn');
+const playerBtn = document.getElementById('player');
+const aiBtn = document.getElementById('ai');
 let oTurn;
 
 function startGame() {
@@ -26,12 +28,25 @@ function startGame() {
         cell.addEventListener('click', handleClick, { once: true })
     });
     setBoardHoverClass();
+    aiBtn.classList.remove('hide');
     winMsgElem.classList.remove('show');
 }
 
-startGame();
+function startGamePlayer() {
+    oTurn = false;
+    cellElements_div.forEach(cell => {
+        cell.classList.remove(X_CLASS);
+        cell.classList.remove(O_CLASS);
+        cell.removeEventListener('click', handleClick);
+        cell.addEventListener('click', handleClick, { once: true })
+    });
+    setBoardHoverClass();
+    winMsgElem.classList.remove('show');
+    aiBtn.classList.add('hide');
+}
 
 restartBtn.addEventListener('click', startGame);
+playerBtn.addEventListener('click', startGamePlayer);
 
 function handleClick(e) {
     const cell = e.target;

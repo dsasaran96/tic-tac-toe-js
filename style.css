@@ -29,6 +29,16 @@ body {
     align-items: center;
 }
 
+.playerVai {
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+}
 /* cell creation */
 
 .cell {
@@ -159,3 +169,35 @@ body {
     display: flex;
 }
 
+/* player or ai selector */
+
+.btn {
+    border-radius: 20px;
+    font-size: 40px;
+    border: none;
+    padding: 20px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.4);
+    transition: all .4s ease-in-out;
+}
+
+.player {
+    display: block;
+    background-color: #69a0e9;
+}
+
+.player.hide {
+    display: none;
+}
+
+.ai {
+    display: block;
+    background-color: #db3c3c;
+}
+
+.ai.hide {
+    display: none;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
